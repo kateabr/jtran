@@ -136,7 +136,7 @@ class JTran:
         :param text text to transliterate
         :return: transliterated text
         """
-        if not 'ー' in text:
+        if 'ー' not in text:
             return JTran.transpose_codepoints_in_range(text, -96, 12449, 12534)
         return JTran.transliterate_from_latn_to_hrkt(
             JTran.transliterate_from_hira_to_latn(
