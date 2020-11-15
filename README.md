@@ -1,5 +1,10 @@
-# Japanese Transliterator
+# Japanese Kana-Latin Transliteration Tables
 [![PyPI](https://img.shields.io/pypi/v/jtran.svg)](https://pypi.python.org/pypi/jtran)
-[![TravisCI](https://img.shields.io/travis/kateabr/jtran.svg)](https://travis-ci.com/kateabr/jtran.svg?branch=master)
+[![Build Status](https://travis-ci.com/kateabr/jtran.svg?token=2iwzrCfZDArjbexpKxss&branch=master)](https://travis-ci.com/kateabr/jtran)
 
-Japanese Kana-Latin Transliteration Tables
+
+## Install
+
+```
+pip install jtran
+```
