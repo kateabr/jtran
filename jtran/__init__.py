@@ -1,5 +1,5 @@
 """
-Functions for easy transliteration of [Hirag/Katak]ana and English/Latin.
+Functions for easy transliteration of kana from/to latin.
 
 Much of the work here is inspired/inherited/etc from Kim Ahlström and his work on "Ve", built in Ruby.
 

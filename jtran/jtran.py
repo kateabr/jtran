@@ -5,6 +5,11 @@ from jtran.translation_maps import H_SYLLABIC_N, H_SMALL_TSU, HIRA_TO_LATN, LATN
 
 class JTran:
     @staticmethod
+    def remove_colons_from_transliteration(text: str) -> str:
+        lvowels = {'a:': 'aa', 'i:': 'ii', 'u:': 'uu', 'e:': 'ee', 'o:': 'ou'}
+        return re.sub(r'(\w:)', lambda m: lvowels[m.group(1)] if m.group(1) in lvowels.keys() else m.group(1), text)
+
+    @staticmethod
     def transliterate_from_hrkt_to_latn(text: str) -> str:
         """
         Transliterates from [Hirag/Katak]ana to Latin/En.
@@ -14,7 +19,7 @@ class JTran:
         """
 
         text = JTran.transliterate_from_kana_to_hira(text)
-        return JTran.transliterate_from_hira_to_latn(text)
+        return JTran.remove_colons_from_transliteration(JTran.transliterate_from_hira_to_latn(text))
 
     @staticmethod
     def transliterate_from_hira_to_latn(text: str) -> str:
@@ -47,7 +52,7 @@ class JTran:
                     break
 
                 elif for_conversion == _H_SYLLABIC_N and re.match(
-                    "[\u3084-\u3088]", kana[(index + 1): (index + 2)]
+                        "[\u3084-\u3088]", kana[(index + 1): (index + 2)]
                 ):
                     # Syllabic N before ya, yu or yo
                     mora = "n'"
@@ -68,7 +73,7 @@ class JTran:
                     index += length
                     klength -= length
 
-        return romaji
+        return JTran.remove_colons_from_transliteration(romaji)
 
     @staticmethod
     def transliterate_from_latn_to_hrkt(text: str) -> str:
@@ -79,7 +84,7 @@ class JTran:
         :return: transliterated text
         """
         # Duplicate the text...
-        romaji = text * 1
+        romaji = JTran.remove_colons_from_transliteration(text)
         kana = ""
 
         romaji = re.sub("/m([BbPp])/", "n\1", romaji)
@@ -101,8 +106,8 @@ class JTran:
                 elif for_conversion in LATN_TO_HIRA:
                     mora = LATN_TO_HIRA[for_conversion]
                 elif for_conversion == "tch" or (
-                    for_removal == 2
-                    and re.match("/([kgsztdnbpmyrlwc])\1/", for_conversion)
+                        for_removal == 2
+                        and re.match("/([kgsztdnbpmyrlwc])\1/", for_conversion)
                 ):
                     mora = H_SMALL_TSU
                     for_removal = 1
@@ -131,7 +136,11 @@ class JTran:
         :param text text to transliterate
         :return: transliterated text
         """
-        return JTran.transpose_codepoints_in_range(text, -96, 12449, 12534)
+        if not 'ー' in text:
+            return JTran.transpose_codepoints_in_range(text, -96, 12449, 12534)
+        return JTran.transliterate_from_latn_to_hrkt(
+            JTran.transliterate_from_hira_to_latn(
+                JTran.transpose_codepoints_in_range(text, -96, 12449, 12534)))
 
     @staticmethod
     def transliterate_from_hira_to_kana(text: str) -> str:
@@ -167,7 +176,7 @@ class JTran:
 
     @staticmethod
     def transpose_codepoints_in_range(
-        text: str, distance: int, range_start: int, range_end: int
+            text: str, distance: int, range_start: int, range_end: int
     ) -> str:
         """
         Given a set of text (unicode...), coupled with distance and range, transposes
