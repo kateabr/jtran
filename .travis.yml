@@ -1,0 +1,18 @@
+language: python
+python: 3.5
+
+before_install:
+  - pip install poetry
+
+install:
+  - poetry install
+
+script:
+  - poetry run flake8 jtran tests
+  - poetry run python -m unittest discover
+
+deploy:
+  - provider: script
+    script: poetry publish --username $PYPI_USER --password $PYPI_PASS --build
+    on:
+      tags: true

@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "jtran"
+version = "0.1.0"
+description = "Japanese transliteration tables"
+license = "MIT"
+authors = ["Ekaterina Biryukova <kateabr@yandex.ru>"]
+homepage = "https://github.com/kateabr/jtran"
+repository = "https://github.com/kateabr/jtran"
+readme = "README.md"
+include = [
+    "LICENSE",
+]
+classifiers = [
+    "Programming Language :: Python :: 3.5",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: Implementation :: CPython",
+]
+
+[tool.poetry.dependencies]
+python = "^3.5"
+
+[tool.poetry.dev-dependencies]
+flake8 = "^3.7.9"
