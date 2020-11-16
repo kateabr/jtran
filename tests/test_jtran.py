@@ -12,6 +12,7 @@ class TestJtran(unittest.TestCase):
         )
 
         self.assertEqual(JTran.transliterate_from_kana_to_hira("キロメートル"), "きろめえとる")
+        self.assertEqual(JTran.transliterate_from_kana_to_hira("チューリップ"), "ちゅうりっぷ")
 
         self.assertEqual(JTran.transliterate_from_kana_to_hira("ストロベリー"), "すとろべりい")
 
