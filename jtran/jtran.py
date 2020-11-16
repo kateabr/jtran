@@ -62,7 +62,7 @@ class JTran:
                 if len(mora) > 0:
                     if geminate:
                         geminate = False
-                        romaji += mora[index: index + 1]
+                        romaji += mora[:1]
 
                     romaji += mora
                     index += length
