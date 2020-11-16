@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "jtran"
-version = "0.1.0"
+version = "0.1.12"
 description = "Japanese kana-latin transliteration tables"
 license = "MIT"
 authors = ["Ekaterina Biryukova <kateabr@yandex.ru>"]
