@@ -74,7 +74,7 @@ class JTran:
         return JTran.remove_colons_from_transliteration(romaji)
 
     @staticmethod
-    def transliterate_from_latn_to_hrkt(text: str) -> str:
+    def transliterate_from_latn_to_hrkt(text: str, colons_to_double_vowel: bool = True) -> str:
         """
         Transliterates from Latin/En to Hiragana (mostly).
 
@@ -82,7 +82,7 @@ class JTran:
         :return: transliterated text
         """
         # Duplicate the text...
-        romaji = JTran.remove_colons_from_transliteration(text)
+        romaji = JTran.remove_colons_from_transliteration(text) if colons_to_double_vowel else text * 1
         kana = ""
 
         romaji = re.sub("/m([BbPp])/", "n\1", romaji)
