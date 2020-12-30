@@ -21,5 +21,15 @@ class TestJtran(unittest.TestCase):
 
         self.assertEqual(JTran.transliterate_from_hira_to_latn("ぜんや"), "zen'ya")
 
+        self.assertEqual(JTran.transliterate_from_hira_to_latn("けんい"), "ken'i")
+
+        self.assertEqual(JTran.transliterate_from_hira_to_latn("ちぢめる"), "chijimeru")
+        self.assertEqual(JTran.transliterate_from_latn_to_hrkt("chijimeru"), "ちじめる")
+        self.assertEqual(JTran.transliterate_from_latn_to_hrkt("chidimeru"), "ちぢめる")
+
+        self.assertEqual(JTran.transliterate_from_hira_to_latn("つづく"), "tsuzuku")
+        self.assertEqual(JTran.transliterate_from_latn_to_hrkt("tsuzuku"), "つずく")
+        self.assertEqual(JTran.transliterate_from_latn_to_hrkt("tsuduku"), "つづく")
+
         self.assertEqual(JTran.transliterate_from_halfwidth_to_fullwidth("abcde123"), "ａｂｃｄｅ１２３")
         self.assertEqual(JTran.transliterate_from_fullwidth_to_halfwidth("ａｂｃｄｅ１２３"), "abcde123")

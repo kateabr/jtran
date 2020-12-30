@@ -51,10 +51,8 @@ class JTran:
                     klength -= length
                     break
 
-                elif for_conversion == _H_SYLLABIC_N and re.match(
-                        "[\u3084-\u3088]", kana[(index + 1): (index + 2)]
-                ):
-                    # Syllabic N before ya, yu or yo
+                elif for_conversion == _H_SYLLABIC_N and re.match("[あいうえおやゆよ]", kana[(index + 1): (index + 2)]):
+                    # Syllabic N before open syllables
                     mora = "n'"
                 elif for_conversion in HIRA_TO_LATN:
                     mora = HIRA_TO_LATN[for_conversion]
