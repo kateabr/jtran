@@ -78,7 +78,8 @@ class JTran:
         """
         Transliterates from Latin/En to Hiragana (mostly).
 
-        :param text text to transliterate
+        :param text: text to transliterate
+        :param colons_to_double_vowel: whether to change colons into another vowel or a vowel length indicator
         :return: transliterated text
         """
         # Duplicate the text...
