@@ -5,8 +5,6 @@ from jtran import JTran
 
 class TestJtran(unittest.TestCase):
     def test_jtran(self):
-        print(JTran.transliterate_from_latn_to_hrkt("efferu"))
-
         self.assertEqual(JTran.transliterate_from_latn_to_hrkt("yako:"), "やこう")
         self.assertEqual(JTran.transliterate_from_latn_to_hrkt("yako:", colons_to_double_vowel=False), "やこー")
         self.assertEqual(JTran.transliterate_from_latn_to_hrkt("yakou"), "やこう")
